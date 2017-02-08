@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Domain.Abstract;
-using Domain.Entitities;
+using Domain.Entities;
 using Domain.Concrete;
 using Moq;
 using Ninject;

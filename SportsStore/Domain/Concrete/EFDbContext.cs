@@ -1,6 +1,6 @@
 ﻿
 using System.Data.Entity;
-using Domain.Entitities;
+using Domain.Entities;
 
 namespace Domain.Concrete
 {

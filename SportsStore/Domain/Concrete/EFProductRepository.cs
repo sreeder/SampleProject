@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Abstract;
-using Domain.Entitities;
+using Domain.Entities;
 
 
 //talk to the database
