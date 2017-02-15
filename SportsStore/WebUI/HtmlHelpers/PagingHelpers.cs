@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
+using Domain.Entities;
+using WebUI.Controllers;
 using WebUI.Models;
+using System.Linq;
 
 namespace WebUI.HtmlHelpers
 {
@@ -26,6 +27,33 @@ namespace WebUI.HtmlHelpers
                 }
                 tag.AddCssClass("btn btn-default");
                 result.Append(tag.ToString());
+            }
+
+            return MvcHtmlString.Create(result.ToString());
+        }
+        //extension method (because of this)
+        public static MvcHtmlString PagedProductGrid(this HtmlHelper html, PagingInfo paging,
+            IEnumerable<Product> products)
+        {
+            StringBuilder result = new StringBuilder();
+            var gridProducts = products.OrderBy(p => p.ProductID)
+                .Skip((paging.CurrentPage - 1) * paging.ItemsPerPage)
+                .Take(paging.ItemsPerPage);
+
+            
+            foreach(var product in gridProducts)
+            {
+                TagBuilder h2 = new TagBuilder("h2");
+                TagBuilder p = new TagBuilder("p");
+                h2.InnerHtml = product.Name + " (" + product.Price.ToString("c") +")";
+                p.InnerHtml = product.Description;
+
+                TagBuilder div = new TagBuilder("div");
+                div.InnerHtml = h2.ToString()+p.ToString();
+                
+                div.AddCssClass("well");
+                TagBuilder br = new TagBuilder("br");
+                result.Append(div.ToString()+br.ToString());
             }
 
             return MvcHtmlString.Create(result.ToString());
