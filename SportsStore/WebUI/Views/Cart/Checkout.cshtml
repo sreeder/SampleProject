@@ -16,31 +16,35 @@
     </div>
     <h3>Address</h3>
 
-    foreach (var property in ViewData.ModelMetadata.Properties)
+    foreach (ModelMetadata property in ViewData.ModelMetadata.Properties)
     {
-        if (property.PropertyName != "Name" && property.PropertyName !=
-            "GiftWrap")
+        if (property.PropertyName != "Name")
         {
             <div class="form-group">
                 <label>
                     @(property.DisplayName ?? property.PropertyName)
                 </label>
-                @Html.TextBox(property.PropertyName, null, new
+
+                @if (property.ModelType == typeof(string))
                 {
-                    @class =
-                        "form-control"
-                })
+                    @Html.TextBox(property.PropertyName, null, new
+                   {
+                       @class =
+                                "form-control"
+                   })
+                }
+                @if (property.ModelType == typeof(bool))
+                {
+                    @Html.DropDownList(property.PropertyName, new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "True", Value = "true" },
+                        new SelectListItem { Text = "False", Value = "false", Selected = true}
+                    })
+                }
             </div>
         }
     }
 
-    <h3>Options</h3>
-    <div class="checkbox">
-        <label>
-            @Html.EditorFor(x => x.GiftWrap)
-            Gift wrap these items
-        </label>
-    </div>
     <div class="text-center">
         <input class="btn btn-primary" type="submit" value="Complete order"/>
     </div>

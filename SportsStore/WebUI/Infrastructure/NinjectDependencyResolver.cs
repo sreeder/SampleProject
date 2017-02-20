@@ -40,7 +40,8 @@ namespace WebUI.Infrastructure
             EmailSettings emailSettings = new EmailSettings
             {
                 WriteAsFile = bool.Parse(ConfigurationManager
-.AppSettings["Email.WriteAsFile"] ?? "false")
+.AppSettings["Email.WriteAsFile"] ?? "false"),
+                MailToAddress = Environment.Email
             };
             kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>()
             .WithConstructorArgument("settings", emailSettings);

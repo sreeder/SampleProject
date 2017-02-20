@@ -19,26 +19,6 @@ namespace WebUI.Controllers
             this.repository = productRepository;
         }
 
-        //this is testing and is associated with the paging
-        //public ViewResult List(string category, int page = 1)
-        //{
-        //    ProductsListViewModel model = new ProductsListViewModel
-        //    {
-        //        Products = repository.Products
-        //        .Where(p=> category==null|| p.Category==category),
-                
-        //        PagingInfo = new PagingInfo{
-        //            CurrentPage=page,
-        //            ItemsPerPage = PageSize,
-        //            TotalItems = category ==null ?
-        //            repository.Products.Count() :
-        //            repository.Products.Where(e=>e.Category == category).Count()
-        //        },
-        //        CurrentCategory = category
-        //    };
-
-        //    return View(model);
-        //}
         public ViewResult List(string category, int page = 1)
         {
             ProductsListViewModel model = new ProductsListViewModel
