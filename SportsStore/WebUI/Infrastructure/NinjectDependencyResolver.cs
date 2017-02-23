@@ -11,8 +11,7 @@ using Moq;
 using Ninject;
 
 namespace WebUI.Infrastructure
-{
-   
+{ 
     public class NinjectDependencyResolver:IDependencyResolver
     {
         private IKernel kernel;
@@ -26,6 +25,7 @@ namespace WebUI.Infrastructure
         {
             return kernel.TryGet(serviceType);
         }
+
         public IEnumerable<object> GetServices(Type serviceType)
         {
             return kernel.GetAll(serviceType);
@@ -39,8 +39,7 @@ namespace WebUI.Infrastructure
 
             EmailSettings emailSettings = new EmailSettings
             {
-                WriteAsFile = bool.Parse(ConfigurationManager
-.AppSettings["Email.WriteAsFile"] ?? "false"),
+                WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false"),
                 MailToAddress = Environment.Email
             };
             kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>()
