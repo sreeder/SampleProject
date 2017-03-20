@@ -4,7 +4,6 @@ using Moq;
 using WebUI.Controllers;
 using WebUI.Infrastructure.Abstract;
 using WebUI.Models;
-using SportsStore.WebUI.Models;
 
 namespace SportsStore.UnitTests
 {
